@@ -1,0 +1,194 @@
+2021-08-24T09:02:57.124-0400 [DEBUG] Resource instance state not found for node "okta_app_user_schema_property.role", instance okta_app_user_schema_property.role
+2021-08-24T09:02:57.124-0400 [DEBUG] ReferenceTransformer: "okta_app_user_schema_property.role" references: []
+2021-08-24T09:02:57.128-0400 [DEBUG] refresh: okta_app_user_schema_property.role: no state, so not refreshing
+2021-08-24T09:02:57.130-0400 [WARN]  Provider "registry.terraform.io/okta/okta" produced an invalid plan for okta_app_user_schema_property.role, but we are tolerating it because it is using the legacy plugin SDK.
+    The following problems may be the cause of any confusing errors from downstream operations:
+      - .union: planned value cty.False for a non-computed attribute
+      - .user_type: planned value cty.StringVal("default") for a non-computed attribute
+      - .scope: planned value cty.StringVal("NONE") for a non-computed attribute
+2021-08-24T09:09:04.860-0400 [DEBUG] Resource state not found for node "okta_app_user_schema_property.role", instance okta_app_user_schema_property.role
+2021-08-24T09:09:04.864-0400 [DEBUG] ProviderTransformer: "okta_app_user_schema_property.role" (*terraform.NodeApplyableResourceInstance) needs provider["registry.terraform.io/okta/okta"]
+2021-08-24T09:09:04.870-0400 [DEBUG] ReferenceTransformer: "okta_app_user_schema_property.role" references: [data.okta_app.ldap (expand)]
+2021-08-24T09:09:10.808-0400 [INFO]  Starting apply for null_resource.reapply_profile_mappings
+2021-08-24T09:09:10.808-0400 [DEBUG] null_resource.reapply_profile_mappings: applying the planned Create change
+2021-08-24T09:09:10.808-0400 [WARN]  Provider "registry.terraform.io/okta/okta" produced an invalid plan for okta_app_user_schema_property.role, but we are tolerating it because it is using the legacy plugin SDK.
+    The following problems may be the cause of any confusing errors from downstream operations:
+      - .user_type: planned value cty.StringVal("default") for a non-computed attribute
+      - .union: planned value cty.False for a non-computed attribute
+      - .scope: planned value cty.StringVal("NONE") for a non-computed attribute
+2021-08-24T09:09:10.809-0400 [INFO]  Starting apply for okta_app_user_schema_property.role
+2021-08-24T09:09:10.810-0400 [DEBUG] okta_app_user_schema_property.role: applying the planned Create change
+2021-08-24T09:09:10.811-0400 [DEBUG] provider.terraform-provider-okta_v3.13.6: 2021/08/24 09:09:10 [DEBUG] performing request: method=POST url=https://dev.login.bandwidth.com/api/v1/meta/schemas/apps/0oalhxwulWUNFIhxC4x6/default
+2021-08-24T09:09:10.812-0400 [INFO]  provider.terraform-provider-okta_v3.13.6: 2021/08/24 09:09:10 [DEBUG] Okta API Request Details:
+---[ REQUEST ]---------------------------------------
+---[ REQUEST ]---------------------------------------
+POST /api/v1/meta/schemas/apps/0oalhxwulWUNFIhxC4x6/default HTTP/1.1
+Host: dev.login.bandwidth.com
+User-Agent: okta-sdk-golang/2.6.0 golang/go1.16.7 darwin/amd64 okta-terraform/3.13.6 
+Content-Length: 353
+Accept: application/json
+Authorization: 
+Content-Type: application/json
+Accept-Encoding: gzip
+
+{
+ "definitions": {
+  "custom": {
+   "id": "#custom",
+   "properties": {
+    "role": {
+     "description": "The roles assigned to the user",
+     "externalName": "role",
+     "items": {
+      "type": "string"
+     },
+     "master": {
+      "type": "PROFILE_MASTER"
+     },
+     "permissions": [
+      {
+       "action": "READ_ONLY",
+       "principal": "SELF"
+      }
+     ],
+     "required": false,
+     "scope": "NONE",
+     "title": "Roles",
+     "type": "array",
+     "union": "DISABLE"
+    }
+   },
+   "type": "object"
+  }
+ }
+}
+
+-----------------------------------------------------: timestamp=2021-08-24T09:09:10.811-0400
+2021-08-24T09:09:10.953-0400 [INFO]  provider.terraform-provider-okta_v3.13.6: 2021/08/24 09:09:10 [DEBUG] Okta API Response Details:
+---[ RESPONSE ]--------------------------------------
+HTTP/1.1 400 Bad Request
+Connection: close
+Transfer-Encoding: chunked
+Cache-Control: no-cache, no-store
+Content-Type: application/json
+Date: Tue, 24 Aug 2021 13:09:09 GMT
+Expect-Ct: report-uri="https://oktaexpectct.report-uri.com/r/t/ct/reportOnly", max-age=0
+Expires: 0
+P3p: CP="HONK"
+Pragma: no-cache
+Server: nginx
+Set-Cookie: sid=""; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+Set-Cookie: JSESSIONID=686DFAE3D1FF7C5846FA611B98326311; Path=/; Secure; HttpOnly
+Strict-Transport-Security: max-age=315360000; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Okta-Request-Id: YSTvddaVXkzcww9wwUBq4AAAA3U
+X-Rate-Limit-Limit: 600
+X-Rate-Limit-Remaining: 599
+X-Rate-Limit-Reset: 1629810609
+X-Xss-Protection: 0
+
+f9
+{
+ "errorCode": "E0000001",
+ "errorSummary": "Api validation failed: updateAppUserSchemas",
+ "errorLink": "E0000001",
+ "errorId": "oaeTzV_ysj2SwWY7decpzR3NA",
+ "errorCauses": [
+  {
+   "errorSummary": "Property role cannot be deleted. It is used to populate user.roles."
+  }
+ ]
+}
+0
+
+
+-----------------------------------------------------: timestamp=2021-08-24T09:09:10.953-0400
+2021-08-24T09:09:11.221-0400 [INFO]  provider.terraform-provider-okta_v3.13.6: 2021/08/24 09:09:11 [DEBUG] Okta API Response Details:
+---[ RESPONSE ]--------------------------------------
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Cache-Control: no-cache, no-store
+Content-Type: application/json
+Date: Tue, 24 Aug 2021 13:09:10 GMT
+Expect-Ct: report-uri="https://oktaexpectct.report-uri.com/r/t/ct/reportOnly", max-age=0
+Expires: 0
+P3p: CP="HONK"
+Pragma: no-cache
+Server: nginx
+Set-Cookie: sid=""; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+Set-Cookie: JSESSIONID=530D76515A02AE03C6C425AC6F24FA02; Path=/; Secure; HttpOnly
+Strict-Transport-Security: max-age=315360000; includeSubDomains
+Vary: Accept-Encoding
+X-Content-Type-Options: nosniff
+X-Okta-Request-Id: YSTvda3Hdn@ObD2zDJd7vwAAAX0
+X-Rate-Limit-Limit: 600
+X-Rate-Limit-Remaining: 598
+X-Rate-Limit-Reset: 1629810609
+X-Xss-Protection: 0
+
+10f1
+{
+ "id": "https://id-instance.okta.com/meta/schemas/apps/0oalhxwulWUNFIhxC4x6/default",
+ "$schema": "http://json-schema.org/draft-04/schema#",
+ "name": "ldap_sun_one",
+ "title": "dc=bandwidthclec,dc=local User",
+ "lastUpdated": "2021-08-23T20:09:09.000Z",
+ "created": "2020-07-20T12:56:52.000Z",
+ "definitions": {
+  "custom": {
+   "id": "#custom",
+   "type": "object",
+   {} ... ,
+   "role": {
+     "title": "Roles",
+     "description": "The roles assigned to the user",
+     "type": "array",
+     "externalName": "role",
+     "scope": "NONE",
+     "items": {
+      "type": "string"
+     },
+     "union": "DISABLE",
+     "master": {
+      "type": "PROFILE_MASTER"
+     }
+    },
+    ...
+    }
+   },
+   "required": []
+  },
+  "base": {
+   "id": "#base",
+   "type": "object",
+   "properties": {
+   		{...} 
+   	}
+"type": "object",
+ "properties": {
+  "profile": {
+   "allOf": [
+    {
+     "$ref": "#/definitions/custom"
+    },
+    {
+     "$ref": "#/definitions/base"
+    }
+   ]
+  }
+ }
+}
+0
+
+-----------------------------------------------------: timestamp=2021-08-24T09:09:11.334-0400
+2021-08-24T09:09:11.336-0400 [WARN]  Provider "provider[\"registry.terraform.io/okta/okta\"]" produced an unexpected new value for okta_app_user_schema_property.role, but we are tolerating it because it is using the legacy plugin SDK.
+    The following problems may be the cause of any confusing errors from downstream operations:
+      - .required: was null, but now cty.False
+      - .external_namespace: was null, but now cty.StringVal("")
+      - .max_length: was null, but now cty.NumberIntVal(0)
+      - .unique: was null, but now cty.StringVal("")
+      - .min_length: was null, but now cty.NumberIntVal(0)
+2021-08-24T09:09:12.108-0400 [DEBUG] provider.stdio: received EOF, stopping recv loop: err="rpc error: code = Unavailable desc = transport is closing"
+2021-08-24T09:09:12.109-0400 [DEBUG] provider: plugin process exited: path=.terraform/providers/registry.terraform.io/hashicorp/null/3.1.0/darwin_amd64/terraform-provider-null_v3.1.0_x5 pid=9234
+
+

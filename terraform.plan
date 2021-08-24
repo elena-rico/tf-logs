@@ -1,0 +1,93 @@
++ terraform plan -lock=true -var-file=../credentials/dev.tfvars -var-file=../environments/dev.tfvars -out=okta.tfplan
+okta_user_base_schema.display_name: Refreshing state... [id=displayName]
+okta_app_user_schema.role: Refreshing state... [id=0oalhxwulWUNFIhxC4x6/role]
+okta_app_user_schema.accountScope: Refreshing state... [id=0oalhxwulWUNFIhxC4x6/accountScope]
+okta_app_user_schema.common_name: Refreshing state... [id=0oalhxwulWUNFIhxC4x6/cn]
+okta_app_user_schema.telephone_number: Refreshing state... [id=0oalhxwulWUNFIhxC4x6/telephoneNumber]
+okta_app_user_schema.account: Refreshing state... [id=0oalhxwulWUNFIhxC4x6/account]
+.
+.
+.
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+  - destroy
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # null_resource.reapply_profile_mappings must be replaced
+-/+ resource "null_resource" "reapply_profile_mappings" {
+      ~ id       = "5550426417445380826" -> (known after apply)
+      ~ triggers = {
+          - "build_number" = "2021-08-23T21:25:38Z"
+        } -> (known after apply) # forces replacement
+    }
+
+  # okta_app_user_schema.role will be destroyed
+  - resource "okta_app_user_schema" "role" {
+      - app_id        = "0oalhxwulWUNFIhxC4x6" -> null
+      - array_enum    = [] -> null
+      - array_type    = "string" -> null
+      - description   = "The roles assigned to the user" -> null
+      - external_name = "role" -> null
+      - id            = "0oalhxwulWUNFIhxC4x6/role" -> null
+      - index         = "role" -> null
+      - master        = "PROFILE_MASTER" -> null
+      - max_length    = 0 -> null
+      - min_length    = 0 -> null
+      - permissions   = "READ_ONLY" -> null
+      - required      = false -> null
+      - scope         = "NONE" -> null
+      - title         = "Roles" -> null
+      - type          = "array" -> null
+      - union         = false -> null
+      - user_type     = "default" -> null
+    }
+
+  # okta_app_user_schema_property.role will be created
+  + resource "okta_app_user_schema_property" "role" {
+      + app_id        = "0oalhxwulWUNFIhxC4x6"
+      + array_type    = "string"
+      + description   = "The roles assigned to the user"
+      + external_name = "role"
+      + id            = (known after apply)
+      + index         = "role"
+      + master        = "PROFILE_MASTER"
+      + permissions   = "READ_ONLY"
+      + scope         = "NONE"
+      + title         = "Roles"
+      + type          = "array"
+      + union         = false
+      + user_type     = "default"
+    }
+
+Plan: 2 to add, 0 to change, 2 to destroy.
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Saved the plan to: okta.tfplan
+
++ terraform apply -lock=true okta.tfplan
+null_resource.reapply_profile_mappings: Destroying... [id=5550426417445380826]
+null_resource.reapply_profile_mappings: Destruction complete after 0s
+okta_app_user_schema.role: Destroying... [id=0oalhxwulWUNFIhxC4x6/role]
+null_resource.reapply_profile_mappings: Creating...
+okta_app_user_schema_property.role: Creating...
+null_resource.reapply_profile_mappings: Provisioning with 'local-exec'...
+null_resource.reapply_profile_mappings (local-exec): (output suppressed due to sensitive value in config)
+okta_app_user_schema_property.role: Creation complete after 0s [id=0oalhxwulWUNFIhxC4x6/role]
+null_resource.reapply_profile_mappings (local-exec): (output suppressed due to sensitive value in config)
+null_resource.reapply_profile_mappings: Creation complete after 1s [id=8281446267739529996]
+╷
+│ Error: failed to delete application user schema property
+│ 
+│ 
+╵
+Releasing state lock. This may take a few moments...
+Formatting terraform sources...
+Removed okta_app_user_schema_property.role
+Successfully removed 1 resource instance(s).
+Releasing state lock. This may take a few moments...
+❯
+
